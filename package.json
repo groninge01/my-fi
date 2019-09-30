@@ -5,9 +5,16 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --prod --aot",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "clean": "rm -rf functions-build && mkdir functions-build",
+    "bnd": "cd functions/bnd && npm install && zip -r bnd.zip *",
+    "postbnd": "mv functions/bnd/bnd.zip functions-build",
+    "meesman": "cd functions/meesman && npm install && zip -r meesman.zip *",
+    "postmeesman": "mv functions/meesman/meesman.zip functions-build",
+    "prebuild:prod": "npm run clean && npm run bnd && npm run meesman"
   },
   "private": true,
   "dependencies": {
